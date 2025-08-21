@@ -1,0 +1,20 @@
+<div class="todo-create-container">
+  <h2>Create a New Todo</h2>
+
+  <label>
+    Title:
+    <input type="text" [(ngModel)]="title" placeholder="Enter title" />
+  </label>
+
+  <label>
+    Description:
+    <textarea
+      cols="10"
+      rows="10"
+      [(ngModel)]="description"
+      placeholder="Enter description"
+    ></textarea>
+  </label>
+
+  <button (click)="addTodo()">Add Todo</button>
+</div>
