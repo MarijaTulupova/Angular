@@ -1,0 +1,27 @@
+<div class="todo-list-container">
+  <h2>Your Todos</h2>
+
+  <input
+    type="text"
+    placeholder="Search todos..."
+    [value]="searchTerm()"
+    (input)="searchTerm.set($any($event.target).value)"
+  />
+
+  @for (todo of filteredTodos; track todo.id) {
+  <div class="todo-card" [ngClass]="getStatusClass(todo)">
+    <h3>{{ todo.title }}</h3>
+    <p>{{ todo.description }}</p>
+
+    <span class="status">{{ todo.status }}</span>
+
+    <div class="actions">
+      <button (click)="updateStatus(todo)">Update Status</button>
+      <button (click)="deleteTodo(todo)">Delete</button>
+      <button (click)="navigateToEdit(todo)">Edit</button>
+    </div>
+  </div>
+  } @if (filteredTodos.length === 0) {
+  <p class="no-todos">No todos yet. Add some above!</p>
+  }
+</div>
