@@ -1,0 +1,17 @@
+<main class="container">
+  <header class="container__header">
+    <h1>Store API - CRUD Demo</h1>
+
+    @if(loading$ | async){
+    <span class="loader"></span>
+    }
+  </header>
+
+  <div>
+    <button (click)="navigateToAddProduct()">Add new product</button>
+  </div>
+
+  <section class="main-content">
+    <router-outlet></router-outlet>
+  </section>
+</main>

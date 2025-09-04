@@ -1,0 +1,36 @@
+<section class="products-list">
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Search products..."
+      (input)="onSearchChange($event)"
+    />
+  </div>
+
+  <div *ngIf="filteredProducts().length === 0">No products found</div>
+
+  <div class="product-grid" *ngIf="filteredProducts().length > 0">
+    <div
+      class="product-card"
+      *ngFor="let product of filteredProducts(); trackBy: trackById"
+      (click)="onSelectProduct(product.id)"
+    >
+      <img [src]="product.image" [alt]="product.title" class="product-image" />
+
+      <div class="product-info">
+        <h3 class="product-title">{{ product.title }}</h3>
+        <p class="product-price">{{ product.price | currency }}</p>
+        <p class="product-category">{{ product.category }}</p>
+
+        <div class="product-actions">
+          <button type="button" (click)="onEditProduct(product.id, $event)">
+            Edit
+          </button>
+          <button type="button" (click)="onDeleteProduct(product.id, $event)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
