@@ -1,0 +1,27 @@
+<h1>Tic-Tac-Toe</h1>
+
+<div *ngIf="!gameStore.mode(); else gameBoard">
+  <h2>Select Game Mode</h2>
+  <div class="mode-buttons">
+    <button (click)="selectMode('pvp')">Multiplayer</button>
+    <button (click)="selectMode('easy')">Easy Bot</button>
+    <button (click)="selectMode('medium')">Medium Bot</button>
+  </div>
+</div>
+
+<ng-template #gameBoard>
+  <div class="board">
+    <div class="cell" *ngFor="let cell of gameStore.board(); let i = index" (click)="makeMove(i)">
+      {{ cell }}
+    </div>
+  </div>
+
+  <button class="reset-button" (click)="resetGame()">Reset</button>
+
+  <section>
+    <h3 *ngIf="gameStore.winner() && gameStore.isGameOver() && gameStore.winner() !== 'draw'">
+      Winner is: {{ gameStore.winner() }}
+    </h3>
+    <h3 *ngIf="gameStore.winner() === 'draw'">The game is a draw.</h3>
+  </section>
+</ng-template>
